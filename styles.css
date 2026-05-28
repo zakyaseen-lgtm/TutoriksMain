@@ -714,20 +714,24 @@ h3 { font-family: var(--font-body); font-weight: 600; font-size: 1.125rem; }
 .hero-kicker {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.35rem;
   margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(255, 90, 31, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 90, 31, 0.08);
   color: var(--warm-accent-deep);
-  font-size: 0.76rem;
+  font-size: clamp(0.82rem, 1.4vw, 0.95rem);
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .hero-kicker span {
-  padding: 0.55rem 0.75rem;
-  border: 1px solid rgba(255, 90, 31, 0.16);
-  border-radius: 999px;
-  background: rgba(255, 90, 31, 0.08);
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
 }
 
 .hero-title {
@@ -819,16 +823,13 @@ h3 { font-family: var(--font-body); font-weight: 600; font-size: 1.125rem; }
   stroke-linecap: round;
   stroke-dasharray: 540;
   stroke-dashoffset: 540;
-  animation: heroGraphDraw 4s ease-in-out infinite;
-}
-
-.hero-visual:is(:hover, :active) .scene-graph-line {
-  animation-duration: 1.7s;
+  animation: heroGraphDraw 4s linear infinite;
 }
 
 @keyframes heroGraphDraw {
   0% { stroke-dashoffset: 540; }
-  46%, 72% { stroke-dashoffset: 0; }
+  40% { stroke-dashoffset: 0; }
+  60% { stroke-dashoffset: 0; }
   100% { stroke-dashoffset: -540; }
 }
 
@@ -929,33 +930,67 @@ h3 { font-family: var(--font-body); font-weight: 600; font-size: 1.125rem; }
   stroke: #FFB25A;
   stroke-width: 8;
   stroke-linecap: round;
-  animation: heroSpark 2.4s ease-in-out infinite;
+  animation: heroSpark 3s ease-in-out infinite;
 }
 
 .scene-spark--two path {
-  animation-delay: -0.8s;
+  animation-delay: -1.5s;
 }
 
 .hero-scene-tag {
   position: absolute;
   left: 50%;
-  bottom: 4%;
+  bottom: 5%;
   z-index: 3;
-  width: max-content;
-  max-width: calc(100% - 2rem);
-  padding: 0.75rem 1rem;
-  border: 1px solid rgba(255, 90, 31, 0.16);
-  border-radius: 999px;
-  background: rgba(255, 248, 238, 0.84);
-  box-shadow: 0 16px 40px rgba(7, 24, 42, 0.14);
-  color: var(--ink);
-  font-size: 0.78rem;
-  font-weight: 800;
-  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
   text-align: center;
-  transform: translateX(-50%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  pointer-events: none;
+  animation: tagFloat 6s ease-in-out infinite;
+}
+
+.hero-scene-tag::before {
+  content: '';
+  width: 2rem;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 90, 31, 0.35), transparent);
+  animation: tagLinePulse 4s ease-in-out infinite;
+}
+
+.hero-scene-tag .tag-primary {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(7, 24, 42, 0.35);
+  text-shadow: 0 1px 12px rgba(255, 248, 238, 0.85);
+  animation: tagLabelBreathe 5s ease-in-out infinite;
+}
+
+.hero-scene-tag .tag-secondary {
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-shadow: 0 1px 16px rgba(255, 248, 238, 0.95);
+}
+
+@keyframes tagFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-12px); }
+}
+
+@keyframes tagLinePulse {
+  0%, 100% { opacity: 0.3; width: 1.5rem; }
+  50% { opacity: 1; width: 3.2rem; }
+}
+
+@keyframes tagLabelBreathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
 }
 
 @keyframes heroTutorPoint {
@@ -969,8 +1004,8 @@ h3 { font-family: var(--font-body); font-weight: 600; font-size: 1.125rem; }
 }
 
 @keyframes heroSpark {
-  0%, 100% { opacity: 0.36; transform: scale(0.92); }
-  50% { opacity: 1; transform: scale(1.08); }
+  0%, 100% { opacity: 0.5; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1.04); }
 }
 
 @keyframes heroFloat {
@@ -1203,8 +1238,9 @@ h3 { font-family: var(--font-body); font-weight: 600; font-size: 1.125rem; }
   padding: 1.35rem 1.5rem;
   border-radius: 20px;
   background:
-    radial-gradient(circle at 92% 14%, rgba(255, 178, 90, 0.26), transparent 34%),
-    var(--teal-deep);
+    radial-gradient(circle at 74% 22%, rgba(8, 117, 111, 0.22), transparent 55%),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.04), transparent 50%),
+    linear-gradient(145deg, #06121E, #0A1E2E);
   color: var(--white);
   box-shadow: 0 20px 46px rgba(7, 24, 42, 0.18);
 }
@@ -2064,13 +2100,18 @@ h3 { font-family: var(--font-body); font-weight: 600; font-size: 1.125rem; }
   100% { background-position: 28px 0; }
 }
 
-/* Physics — glowing midnight teal board */
-.subject-studio--physics .studio-board {
+/* All subject cards — unified dark background matching landing page physics card */
+.subject-studio--physics .studio-board,
+.subject-studio--chemistry .studio-board,
+.subject-studio--maths .studio-board,
+.subject-studio--cs .studio-board {
   background:
-    radial-gradient(circle at 74% 22%, rgba(8, 117, 111, 0.35), transparent 50%),
-    radial-gradient(circle at 26% 78%, rgba(255, 90, 31, 0.22), transparent 48%),
-    linear-gradient(145deg, #06121E, #0A2032);
+    radial-gradient(circle at 74% 22%, rgba(8, 117, 111, 0.22), transparent 55%),
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.04), transparent 50%),
+    linear-gradient(145deg, #06121E, #0A1E2E);
 }
+
+/* Physics overrides */
 .subject-studio--physics .physics-nucleus { background: #FF5A1F; }
 .subject-studio--physics .physics-electron { background: #FFB25A; }
 .subject-studio--physics .physics-orbit { border-color: rgba(255, 255, 255, 0.35); }
@@ -2078,37 +2119,19 @@ h3 { font-family: var(--font-body); font-weight: 600; font-size: 1.125rem; }
 .subject-studio--physics .physics-spark { background: #FFB25A; }
 .subject-studio--physics .studio-desk { background: linear-gradient(135deg, #FFE4C2, #FFB25A); }
 
-/* Chemistry — glowing midnight coral board */
-.subject-studio--chemistry .studio-board {
-  background:
-    radial-gradient(circle at 74% 22%, rgba(255, 90, 31, 0.28), transparent 50%),
-    radial-gradient(circle at 26% 78%, rgba(8, 117, 111, 0.2), transparent 45%),
-    linear-gradient(145deg, #06121E, #141A22);
-}
+/* Chemistry overrides */
 .subject-studio--chemistry .chem-card::before { background: #FF5A1F; }
 .subject-studio--chemistry .chem-bond-line { background: rgba(255, 255, 255, 0.6); }
 .subject-studio--chemistry .chem-flask-modern span { background: linear-gradient(135deg, #FF5A1F, #FFB25A); }
 .subject-studio--chemistry .studio-desk { background: linear-gradient(135deg, #FFE4C2, #FFB25A); }
 
-/* Maths — glowing midnight gold board */
-.subject-studio--maths .studio-board {
-  background:
-    radial-gradient(circle at 74% 22%, rgba(255, 178, 90, 0.26), transparent 50%),
-    radial-gradient(circle at 26% 78%, rgba(8, 117, 111, 0.18), transparent 45%),
-    linear-gradient(145deg, #050E18, #0E2030);
-}
+/* Maths overrides */
 .subject-studio--maths .math-curve-modern { border-bottom-color: #FFB25A; }
 .subject-studio--maths .math-point-modern { background: #FFB25A; }
 .subject-studio--maths .math-equation-chip { color: rgba(255, 178, 90, 0.95); }
 .subject-studio--maths .studio-desk { background: linear-gradient(135deg, #FFE4C2, #FFB25A); }
 
-/* CS — glowing midnight cyber board */
-.subject-studio--cs .studio-board {
-  background:
-    radial-gradient(circle at 74% 22%, rgba(8, 117, 111, 0.32), transparent 50%),
-    radial-gradient(circle at 26% 78%, rgba(255, 90, 31, 0.2), transparent 45%),
-    linear-gradient(145deg, #040D16, #09202E);
-}
+/* CS overrides */
 .subject-studio--cs .cs-code-line { color: #00F0FF; text-shadow: 0 0 12px rgba(0, 240, 255, 0.95); }
 .subject-studio--cs .cs-binary { color: #FFB25A; text-shadow: 0 0 10px rgba(255, 178, 90, 0.9); }
 .subject-studio--cs .cs-circuit-node { background: #00F0FF; box-shadow: 0 0 12px rgba(0, 240, 255, 0.9); border: 1.5px solid #fff; }
@@ -2475,7 +2498,7 @@ h3 { font-family: var(--font-body); font-weight: 600; font-size: 1.125rem; }
 }
 
 .area-map-card {
-  fill: rgba(255, 252, 247, 0.06);
+  fill: #06121E;
   stroke: rgba(255, 90, 31, 0.35);
   stroke-width: 2;
 }

@@ -46,19 +46,6 @@ body.lp::before {
   letter-spacing: 0;
 }
 
-.lp-header a:first-child::before {
-  content: 'T';
-  display: inline-grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  color: var(--white);
-  background: linear-gradient(135deg, var(--warm-accent), #FFB25A);
-  box-shadow: 0 10px 26px rgba(255, 90, 31, 0.22);
-  font-size: 0.82rem;
-}
-
 .lp-header .btn {
   min-height: 44px;
   padding: 11px 19px;
@@ -290,11 +277,6 @@ body.lp::before {
 }
 .lp-hero-studio--cs .studio-board {
   background: radial-gradient(circle at 74% 22%, rgba(8, 117, 111, 0.20), transparent 55%);
-}
-
-.lp-hero-studio .studio-board::before,
-.lp-hero-studio .studio-board::after {
-  display: none !important;
 }
 
 .lp-hero-studio .studio-chip {
