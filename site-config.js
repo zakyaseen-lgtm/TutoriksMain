@@ -114,22 +114,18 @@ window.TUTORIKS = {
   ],
 
   landingPages: {
-    'o-level-physics-dha': {
-      kicker: 'O/A Level Physics · DHA & Clifton',
+    'physics': {
+      kicker: 'CAIE · IGCSE · GCSE',
       h1: 'O/A Level Physics Tutor',
       subheading:
         'Concept clarity, exam technique, and calm home support for families.',
       area: 'DHA & Clifton',
       subject: 'O/A Level Physics',
       level: 'O Level',
-      cta: 'Request a Physics tutor',
+      cta: 'Talk to a Tutor',
       formTitle: 'Match me with a Physics tutor',
-      formCta: 'Send my match request',
-      bullets: [
-        'IGCSE · GCSE · CAIE',
-        'Exam-led lessons',
-        'Parent updates'
-      ],
+      formCta: 'Match',
+      bullets: ['CAIE', 'IGCSE', 'GCSE'],
       matchTitle: 'A Physics tutor selected with intent',
       matchCopy:
         'We match by syllabus fit, weak chapters, school pace, and exam timeline, so your child gets a tutor who can diagnose the real reason marks are being lost.',
@@ -185,93 +181,18 @@ window.TUTORIKS = {
         }
       ]
     },
-    'o-level-physics-clifton': {
-      kicker: 'O/A Level Physics · DHA & Clifton',
-      h1: 'O/A Level Physics Tutor',
-      subheading:
-        'Concept clarity, exam technique, and calm home support for families.',
-      area: 'DHA & Clifton',
-      subject: 'O/A Level Physics',
-      level: 'O Level',
-      cta: 'Request a Physics tutor',
-      formTitle: 'Match me with a Physics tutor',
-      formCta: 'Send my match request',
-      bullets: [
-        'IGCSE · GCSE · CAIE',
-        'Exam-led lessons',
-        'Parent updates'
-      ],
-      matchTitle: 'Matched for Physics gaps',
-      matchCopy:
-        'We do not send a generic tutor. We look at the exact topics, school pace, and confidence gaps before recommending a Physics expert.',
-      signals: [
-        'Concept repair before paper drilling',
-        'Mark-scheme language built into lessons',
-        'Parent updates on what improved and what remains'
-      ],
-      methodTitle: 'Make Physics predictable',
-      methodIntro:
-        'The goal is not more tuition hours. The goal is a repeatable way to earn marks under exam pressure.',
-      method: [
-        {
-          title: 'Find the leak',
-          copy: 'We identify whether the problem is concept, calculation, diagram, wording, or timing.'
-        },
-        {
-          title: 'Rebuild cleanly',
-          copy: 'Topics are taught with examples that mirror the way CAIE actually asks questions.'
-        },
-        {
-          title: 'Lock it in',
-          copy: 'Students practise focused paper sets until the method becomes automatic.'
-        }
-      ],
-      footerTitle: 'Start with the right Physics tutor',
-      footerCopy:
-        'Send the current grade, school, and problem topics. We will guide the next move.',
-      tutorIds: ['ahmad', 'hassan'],
-      waPrefill:
-        "Hi, I'm looking for an O/A Level Physics tutor in Clifton for my child.",
-      testimonials: [
-        {
-          name: 'Farah',
-          area: 'Clifton Block 2',
-          subject: 'O/A Level Physics',
-          quote:
-            'Mocks improved dramatically once we switched to syllabus-specific drilling.'
-        },
-        {
-          name: 'Imran',
-          area: 'Clifton',
-          subject: 'O/A Level Physics',
-          quote:
-            'Reliable home visits and honest progress updates. Worth every rupee.'
-        },
-        {
-          name: 'Zara',
-          area: 'Clifton Block 5',
-          subject: 'O/A Level Physics',
-          quote:
-            'My daughter finally understood forces and motion — confidence is back.'
-        }
-      ]
-    },
-    'a-level-chemistry-dha': {
-      kicker: 'O/A Level Chemistry · DHA & Clifton',
+    'chemistry': {
+      kicker: 'CAIE · IGCSE · GCSE',
       h1: 'O/A Level Chemistry Tutor',
       subheading:
         'Organic, physical, and inorganic Chemistry taught with CAIE precision.',
       area: 'DHA & Clifton',
       subject: 'O/A Level Chemistry',
       level: 'A Level',
-      cta: 'Request a Chemistry tutor',
+      cta: 'Talk to a Tutor',
       formTitle: 'Match me with a Chemistry tutor',
-      formCta: 'Send my match request',
-      bullets: [
-        'IGCSE · GCSE · CAIE',
-        'Exam-led lessons',
-        'Parent updates'
-      ],
+      formCta: 'Match',
+      bullets: ['CAIE', 'IGCSE', 'GCSE'],
       matchTitle: 'Chemistry needs an expert eye',
       matchCopy:
         'A Level Chemistry is unforgiving. We match students with tutors who can see whether the issue is memory, mechanism logic, calculation setup, or paper timing.',
@@ -327,93 +248,18 @@ window.TUTORIKS = {
         }
       ]
     },
-    'a-level-chemistry-clifton': {
-      kicker: 'O/A Level Chemistry · DHA & Clifton',
-      h1: 'O/A Level Chemistry Tutor',
-      subheading:
-        'Organic, physical, and inorganic Chemistry taught with CAIE precision.',
-      area: 'DHA & Clifton',
-      subject: 'O/A Level Chemistry',
-      level: 'A Level',
-      cta: 'Request a Chemistry tutor',
-      formTitle: 'Match me with a Chemistry tutor',
-      formCta: 'Send my match request',
-      bullets: [
-        'IGCSE · GCSE · CAIE',
-        'Exam-led lessons',
-        'Parent updates'
-      ],
-      matchTitle: 'Not every Chemistry tutor can teach A Level',
-      matchCopy:
-        'We match for depth: organic logic, calculation confidence, explanation quality, and the student’s upcoming exam pressure.',
-      signals: [
-        'Paper-specific weakness mapping',
-        'Past-paper marking with no vague feedback',
-        'Calm lesson structure for difficult topics'
-      ],
-      methodTitle: 'From messy notes to clean answers',
-      methodIntro:
-        'A Level Chemistry becomes manageable when every lesson has a target, a paper link, and a measurable outcome.',
-      method: [
-        {
-          title: 'Clarify',
-          copy: 'The tutor separates memorisation problems from true concept gaps.'
-        },
-        {
-          title: 'Connect',
-          copy: 'Topics are linked across organic, physical, and inorganic Chemistry so papers feel less random.'
-        },
-        {
-          title: 'Convert',
-          copy: 'Students practise turning knowledge into exact phrases, steps, and diagrams that score.'
-        }
-      ],
-      footerTitle: 'Start with the right Chemistry tutor',
-      footerCopy:
-        'Send the current topic list and exam target. We will recommend the tutor profile that fits.',
-      tutorIds: ['sara', 'zainab'],
-      waPrefill:
-        "Hi, I'm looking for an O/A Level Chemistry tutor in Clifton for my child.",
-      testimonials: [
-        {
-          name: 'Rabia',
-          area: 'Clifton',
-          subject: 'O/A Level Chemistry',
-          quote:
-            'Equilibrium and kinetics finally made sense. Grades improved in mocks within weeks.'
-        },
-        {
-          name: 'Tariq',
-          area: 'Clifton Block 8',
-          subject: 'O/A Level Chemistry',
-          quote:
-            'Professional tutor who knew Paper 2 structured questions inside out.'
-        },
-        {
-          name: 'Leila',
-          area: 'Clifton',
-          subject: 'O/A Level Chemistry',
-          quote:
-            'We appreciated the trial session before committing to monthly lessons.'
-        }
-      ]
-    },
-    'o-level-maths-karachi': {
-      kicker: 'O/A Level Maths · DHA & Clifton',
+    'mathematics': {
+      kicker: 'CAIE · IGCSE · GCSE',
       h1: 'O/A Level Maths Tutor',
       subheading:
         'Clear methods, exam practice, and confidence without the panic.',
       area: 'DHA & Clifton',
       subject: 'O/A Level Maths',
       level: 'O Level',
-      cta: 'Request a Maths tutor',
+      cta: 'Talk to a Tutor',
       formTitle: 'Match me with a Maths tutor',
-      formCta: 'Send my match request',
-      bullets: [
-        'IGCSE · GCSE · CAIE',
-        'Exam-led lessons',
-        'Parent updates'
-      ],
+      formCta: 'Match',
+      bullets: ['CAIE', 'IGCSE', 'GCSE'],
       matchTitle: 'Maths improves when the pattern is visible',
       matchCopy:
         'We identify whether the student struggles with basics, question interpretation, speed, or exam pressure, then match the right tutor.',
@@ -469,22 +315,18 @@ window.TUTORIKS = {
         }
       ]
     },
-    'a-level-cs-karachi': {
-      kicker: 'O/A Level Computer Science · DHA & Clifton',
+    'cs': {
+      kicker: 'CAIE · IGCSE · GCSE',
       h1: 'O/A Level Computer Science Tutor',
       subheading:
         '9618 theory, algorithms, and coding support with a clean plan.',
       area: 'DHA & Clifton',
       subject: 'O/A Level Computer Science',
       level: 'A Level',
-      cta: 'Request a CS tutor',
+      cta: 'Talk to a Tutor',
       formTitle: 'Match me with a CS tutor',
-      formCta: 'Send my match request',
-      bullets: [
-        'IGCSE · GCSE · CAIE',
-        'Exam-led lessons',
-        'Parent updates'
-      ],
+      formCta: 'Match',
+      bullets: ['CAIE', 'IGCSE', 'GCSE'],
       matchTitle: 'CS needs both teaching and technical judgement',
       matchCopy:
         'We match students with tutors who understand the syllabus and can actually debug the thinking behind weak code or weak theory answers.',

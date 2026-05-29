@@ -271,18 +271,15 @@
       var fd = new FormData(form);
       var subjects = checkedValues(form, 'subjects');
       var areas = checkedValues(form, 'service_area');
-      var msg =
-        (lp.waPrefill || C.waHome) +
-        '\n\nName: ' +
-        (fd.get('name') || '') +
-        '\nPhone: ' +
-        (fd.get('phone') || '') +
-        '\nLevel: ' +
-        (fd.get('level') || lp.level || '') +
-        '\nSubject: ' +
-        (subjects.length ? subjects.join(', ') : fd.get('subject') || lp.subject || '') +
-        '\nArea: ' +
-        (areas.length ? areas.join(', ') : fd.get('service_area') || fd.get('area') || lp.area || '');
+      var name = fd.get('name') || '';
+      var phone = fd.get('phone') || '';
+      var level = fd.get('level') || lp.level || '';
+      var subject = subjects.length ? subjects.join(', ') : fd.get('subject') || lp.subject || '';
+      var area = areas.length ? areas.join(', ') : fd.get('service_area') || fd.get('area') || lp.area || '';
+      var msg = lp.waPrefill || C.waHome;
+      msg += '\n\nI am looking for a premium ' + level + ' ' + subject + ' tutor for ' + area + ' home visits.';
+      if (name) msg += '\nName: ' + name;
+      if (phone) msg += '\nPhone: ' + phone;
       window.location.href = buildWaUrl(msg);
     });
   }
@@ -306,8 +303,11 @@
       var art = hero.querySelector('.lp-hero-art');
 
       if (kicker) {
-        kicker.textContent =
-          lp.kicker || lp.level + ' ' + lp.subject.replace(lp.level, '').trim();
+        var kickerText = lp.kicker || lp.level + ' ' + lp.subject.replace(lp.level, '').trim();
+        var parts = kickerText.split('·').map(function (s) { return s.trim(); });
+        kicker.innerHTML = parts.map(function (part) {
+          return '<span>' + escapeHtml(part) + '</span>';
+        }).join('<span>·</span>');
       }
       if (h1 && lp.h1) h1.textContent = lp.h1;
       if (lede && lp.subheading) lede.textContent = lp.subheading;
@@ -320,12 +320,13 @@
           .join('');
       }
       if (art && !art.querySelector('.lp-hero-metrics')) {
+        var subjectName = lp.subject ? lp.subject.replace(/^(O\/A Level\s+|O Level\s+|A Level\s+)/i, '') : 'Tutoring';
         art.insertAdjacentHTML(
           'afterbegin',
           '<div class="lp-hero-metrics">' +
-            '<span>' + escapeHtml(lp.level || 'CAIE') + '</span>' +
-            '<span>' + escapeHtml(lp.area || 'DHA & Clifton') + '</span>' +
-            '<span>Exam-led</span>' +
+            '<span>O Levels</span>' +
+            '<span>A Levels</span>' +
+            '<span>' + escapeHtml(subjectName) + '</span>' +
           '</div>'
         );
       }
@@ -336,32 +337,24 @@
       var formTitle = form.querySelector('h2');
       var submit = form.querySelector('button[type="submit"]');
       if (formTitle) formTitle.textContent = lp.formTitle || 'Match me with a tutor';
-      if (submit) submit.textContent = lp.formCta || 'Request my tutor match';
+      if (submit) submit.textContent = lp.formCta || 'Match';
 
-      var wrap = form.parentElement;
-      if (wrap && !wrap.classList.contains('lp-match')) {
-        wrap.classList.add('lp-match');
-      }
-      if (wrap && !wrap.querySelector('.lp-match-copy')) {
-        wrap.insertAdjacentHTML(
-          'afterbegin',
-          '<div class="lp-match-copy">' +
-            '<p class="eyebrow">Private match</p>' +
-            '<h2>' + escapeHtml(lp.matchTitle || 'A tutor selected, not assigned') + '</h2>' +
-            '<p>' + escapeHtml(lp.matchCopy || 'We look at the syllabus, weak chapters, school pace, and exam board before matching your child with an expert.') + '</p>' +
-            '<div class="lp-signal-list">' +
-              (lp.signals || [
-                'Syllabus-fit before availability',
-                'Past-paper method from lesson one',
-                'Parent feedback after every milestone'
-              ])
-                .map(function (item) {
-                  return '<span>' + escapeHtml(item) + '</span>';
-                })
-                .join('') +
-            '</div>' +
-          '</div>'
-        );
+      var matchSection = form.closest('.lp-match');
+      if (matchSection) {
+        var matchCopy = matchSection.querySelector('.lp-match-copy');
+        if (matchCopy) {
+          var heading = matchCopy.querySelector('h2');
+          var descs = matchCopy.querySelectorAll('p:not(.eyebrow)');
+          var desc = descs.length > 0 ? descs[descs.length - 1] : null;
+          var signalList = matchCopy.querySelector('.lp-signal-list');
+          if (heading) heading.textContent = lp.matchTitle || 'A tutor selected, not assigned';
+          if (desc) desc.textContent = lp.matchCopy || 'We look at the syllabus, weak chapters, school pace, and exam board before matching your child with an expert.';
+          if (signalList && lp.signals) {
+            signalList.innerHTML = lp.signals.map(function (item) {
+              return '<span>' + escapeHtml(item) + '</span>';
+            }).join('');
+          }
+        }
       }
     }
 
@@ -815,6 +808,10 @@
     var summaryEl = document.getElementById('matcherSummary');
     var submitBtn = document.getElementById('matcherSubmit');
 
+    matcherCard.querySelectorAll('.chip').forEach(function (chip) {
+      chip.setAttribute('aria-pressed', chip.classList.contains('active') ? 'true' : 'false');
+    });
+
     function updateTicket() {
       var level = selected.level;
       var subject = selected.subject;
@@ -840,7 +837,7 @@
 
       var text = 'I am looking for a premium ' + level + ' ' + subjectStr + ' tutor for ' + modeStr + '.';
       if (summaryEl) {
-        summaryEl.innerHTML = 'I am looking for a premium <strong style="color: var(--warm-accent); font-weight: 800;">' + level + '</strong> <strong style="color: var(--warm-accent); font-weight: 800;">' + subjectStr + '</strong> tutor for <strong style="color: var(--warm-accent); font-weight: 800;">' + modeStr + '</strong>.';
+        summaryEl.innerHTML = 'I am looking for a premium <strong>' + level + '</strong> <strong>' + subjectStr + '</strong> tutor for <strong>' + modeStr + '</strong>.';
       }
 
       var prefill = "Hi! " + text + " Please recommend the right checked expert tutor.";
@@ -854,25 +851,13 @@
         var group = chip.parentElement.getAttribute('data-group');
         if (!group) return;
 
-        if (group === 'subject') {
-          chip.classList.toggle('active');
-          var activeChips = chip.parentElement.querySelectorAll('.chip.active');
-          if (activeChips.length === 0) {
-            chip.classList.add('active');
-            activeChips = [chip];
-          }
-          var vals = [];
-          activeChips.forEach(function (c) {
-            vals.push(c.getAttribute('data-value'));
-          });
-          selected.subject = vals;
-        } else {
-          chip.parentElement.querySelectorAll('.chip').forEach(function (c) {
-            c.classList.remove('active');
-          });
-          chip.classList.add('active');
-          selected[group] = chip.getAttribute('data-value');
-        }
+        chip.parentElement.querySelectorAll('.chip').forEach(function (c) {
+          c.classList.remove('active');
+          c.setAttribute('aria-pressed', 'false');
+        });
+        chip.classList.add('active');
+        chip.setAttribute('aria-pressed', 'true');
+        selected[group] = group === 'subject' ? [chip.getAttribute('data-value')] : chip.getAttribute('data-value');
         updateTicket();
       });
     });
